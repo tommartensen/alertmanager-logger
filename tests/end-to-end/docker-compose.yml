@@ -1,0 +1,13 @@
+---
+version: '3.4'
+services:
+  alertmanager:
+    image: docker.io/prom/alertmanager:v0.21.0
+    ports:
+      - 9093:9093
+    volumes:
+      - './alertmanager-configuration.yml:/etc/alertmanager/alertmanager.yml:ro'
+  logger:
+    image: alertmanager-logger:latest
+    environment:
+      - AUTH_TOKEN=123
